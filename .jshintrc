@@ -1,0 +1,17 @@
+{
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "latedef": true,
+  "loopfunc": true,
+  "node": true,
+  "strict": true,
+  "undef": true,
+  "unused": false,
+  "globals": {
+    "FB": false,
+    "Promise": false,
+    "mason": false
+  }
+}

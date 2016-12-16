@@ -1,0 +1,195 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+  border: 0px; }
+  body svg {
+    width: 32px;
+    fill: white; }
+  body #social_button_container {
+    -webkit-animation-duration: .4s;
+    animation-duration: .4s;
+    position: fixed;
+    top: 100px;
+    z-index: 1000000; }
+    body #social_button_container > div {
+      height: 100%;
+      cursor: pointer; }
+    body #social_button_container > div > a {
+      -webkit-transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      -moz-transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      -o-transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: block; }
+      body #social_button_container > div > a .share_wrapper,
+      body #social_button_container > div > a .count_wrapper {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        clip: rect(0px, 0px, 0px, 0px);
+        padding: 0;
+        border: 0;
+        overflow: hidden; }
+      body #social_button_container > div > a > span {
+        padding: 8px; }
+      body #social_button_container > div > a svg {
+        margin: 0px auto;
+        display: block; }
+      body #social_button_container > div > a .icon_wrapper {
+        display: block;
+        width: 100%; }
+    body #social_button_container > div > a:hover {
+      -webkit-transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      -moz-transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      -o-transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      transition: width 0.3s, border-top-left-radius 0.3s, border-top-right-radius 0.3s, border-bottom-left-radius 0.3s, border-bottom-right-radius 0.3s ease-in-out;
+      width: 150%; }
+  body #backdrop {
+    position: fixed;
+    z-index: 1000001;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8); }
+    body #backdrop #pinterest_header {
+      padding: 10px 15px;
+      position: relative;
+      height: 64px;
+      background-color: rgba(0, 0, 0, 0.6); }
+      body #backdrop #pinterest_header > div {
+        border: 2px solid white;
+        background-color: #cb2124;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        float: left;
+        margin-right: 15px; }
+        body #backdrop #pinterest_header > div svg {
+          margin: 4px; }
+      body #backdrop #pinterest_header h1 {
+        font: 18px helvetica,arial,sans-serif;
+        line-height: 44px;
+        color: white;
+        margin: 0px; }
+        body #backdrop #pinterest_header h1 > span {
+          float: right !important;
+          cursor: pointer; }
+    body #backdrop > #masonry-wall {
+      margin: 15px 38px;
+      overflow: scroll;
+      height: 100vh;
+      position: relative; }
+      body #backdrop > #masonry-wall > span.brick {
+        transition: all 350ms ease-out;
+        position: absolute; }
+        body #backdrop > #masonry-wall > span.brick > div {
+          width: 236px;
+          position: relative; }
+          body #backdrop > #masonry-wall > span.brick > div > div {
+            position: relative; }
+            body #backdrop > #masonry-wall > span.brick > div > div > img {
+              border-top-left-radius: 6px;
+              border-top-right-radius: 6px;
+              display: block;
+              width: 100%; }
+            body #backdrop > #masonry-wall > span.brick > div > div > img {
+              width: 100%; }
+            body #backdrop > #masonry-wall > span.brick > div > div > img + span {
+              display: none;
+              position: absolute;
+              top: 10px;
+              left: 10px;
+              background-color: #cb2124;
+              border-radius: 6px;
+              height: 36px;
+              padding: 9px;
+              cursor: pointer; }
+              body #backdrop > #masonry-wall > span.brick > div > div > img + span svg {
+                width: 20px; }
+              body #backdrop > #masonry-wall > span.brick > div > div > img + span div {
+                color: white;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                float: right;
+                margin-left: -4px;
+                font-weight: 400; }
+            body #backdrop > #masonry-wall > span.brick > div > div:hover > img + span {
+              display: inline; }
+            body #backdrop > #masonry-wall > span.brick > div > div > .thumb_dimensions {
+              width: 100%;
+              display: none;
+              position: absolute;
+              bottom: 0px;
+              color: white;
+              text-align: center;
+              font: 11px helvetica,arial,sans-serif;
+              padding-bottom: 8px; }
+            body #backdrop > #masonry-wall > span.brick > div > div:hover > .thumb_dimensions {
+              display: block; }
+          body #backdrop > #masonry-wall > span.brick > div > .thumb_text,
+          body #backdrop > #masonry-wall > span.brick > div > .thumb_link {
+            background-color: white;
+            padding: 10px; }
+          body #backdrop > #masonry-wall > span.brick > div > .thumb_text {
+            font-size: 13px; }
+          body #backdrop > #masonry-wall > span.brick > div > .thumb_link {
+            border-top: 1px solid #e7e7e7;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px; }
+            body #backdrop > #masonry-wall > span.brick > div > .thumb_link > span {
+              font-size: 11px;
+              line-height: 15px;
+              display: block;
+              font-weight: bold;
+              color: #b7b7b7; }
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(1250px);
+    transform: translateX(1250px);
+    border: 3px solid black; }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    border: 3px solid pink; } }
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-1250px);
+    transform: translateX(-1250px);
+    border: 3px solid black; }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    border: 3px solid pink; } }
+  body .social_buttons_right {
+    -webkit-animation-name: slideInRight;
+    animation-name: slideInRight;
+    left: auto;
+    float: right;
+    right: 0px; }
+    body .social_buttons_right > div > a {
+      float: right; }
+  body .social_buttons_left {
+    -webkit-animation-name: slideInLeft;
+    animation-name: slideInLeft;
+    left: 0px;
+    float: left;
+    right: auto; }
+    body .social_buttons_left > div > a {
+      float: left; }

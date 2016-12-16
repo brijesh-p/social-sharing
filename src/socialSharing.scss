@@ -1,0 +1,280 @@
+$backgroundColour : rgba(255, 255, 255, 1);
+$animationDuration : 0.3s;
+$pinterestBackgroundColour: rgb(203, 33, 36);
+$disabledColour: rgb(183, 183, 183);
+$thumbBorderColour: rgb(231,231,231);
+
+@mixin animate_width {
+	-webkit-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
+    -moz-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
+    -o-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
+    transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	background-color: $backgroundColour;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+
+	svg {
+		width: 32px;
+		fill: white;
+	}
+
+	#social_button_container {
+		-webkit-animation-duration: .4s;
+		animation-duration: .4s;
+		position: fixed;
+		top: 100px;
+		z-index: 1000000;
+
+		& > div {
+			height: 100%;
+			cursor: pointer;
+		}
+
+		& > div > a {
+			@include animate_width;
+			width: 100%;
+			height: 100%;
+			position: relative;
+			display: block;
+
+			.share_wrapper,
+			.count_wrapper {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				clip: rect(0px, 0px, 0px, 0px);
+				padding: 0;
+				border: 0;
+				overflow: hidden;
+			}
+
+			& > span {
+				padding: 8px;
+			}
+
+			svg {
+				margin: 0px auto;
+				display: block;
+			}
+
+			.icon_wrapper {
+				display: block;
+				width: 100%;
+			}
+		}
+
+		& > div > a:hover {
+			@include animate_width;
+			width: 150%;
+		}
+	}
+
+	#backdrop {
+		position: fixed;
+		z-index: 1000001;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+
+		#pinterest_header {
+			padding: 10px 15px;
+			position: relative;
+			height: 64px;
+			background-color: rgba(0, 0, 0, 0.6);
+
+			& > div {
+				border: 2px solid white;
+				background-color: $pinterestBackgroundColour;
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+				float: left;
+				margin-right: 15px;
+
+				svg {
+					margin: 4px;
+				}
+			}
+
+			h1 {
+				font: 18px helvetica,arial,sans-serif;
+				line-height: 44px;
+				color: white;
+				margin: 0px;
+
+				& > span {
+					float: right !important;
+					cursor: pointer;
+				}
+			}
+		}
+
+		& > #masonry-wall {
+			margin:	15px 38px;
+			overflow: scroll;
+			height: 100vh;
+			position: relative;
+
+			& > span.brick {
+				transition: all 350ms ease-out;
+				position: absolute;
+
+				& > div {
+					width: 236px;
+					position: relative;
+
+					& > div{
+						position: relative;
+
+						& > img {
+							border-top-left-radius: 6px;
+							border-top-right-radius: 6px;
+							display: block;
+							width: 100%;
+						}
+
+						& > img {
+							width: 100%;
+						}
+
+						& > img + span {
+							display: none;
+							position: absolute;
+							top: 10px;
+							left: 10px;
+							background-color: $pinterestBackgroundColour;
+							border-radius: 6px;
+							height: 36px;
+							padding: 9px;
+							cursor: pointer;
+
+							svg {
+								width: 20px;
+							}
+
+							div {
+								color: white;
+								font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+								font-size: 14px;
+								float: right;
+								margin-left: -4px;
+								font-weight: 400;
+							}
+						}
+
+						&:hover > img + span {
+							display: inline;
+						}
+
+						& > .thumb_dimensions {
+							width: 100%;
+							display: none;
+							position: absolute;
+							bottom: 0px;
+							color: white;
+							text-align: center;
+							font: 11px helvetica,arial,sans-serif;
+							padding-bottom: 8px;
+						}
+
+						&:hover > .thumb_dimensions {
+							display: block;
+						}
+					}
+
+					& > .thumb_text,
+					& > .thumb_link {
+						background-color: white;
+						padding: 10px;
+					}
+
+					& > .thumb_text {
+						font-size: 13px;
+					}
+
+					& > .thumb_link {
+						border-top: 1px solid $thumbBorderColour;
+						border-bottom-left-radius: 6px;
+						border-bottom-right-radius: 6px;
+
+							& > span {
+							font-size: 11px;
+							line-height: 15px;
+							display: block;
+							font-weight: bold;
+							color: $disabledColour;
+						}
+					}
+				}
+			}
+		}
+	}
+
+@keyframes slideInRight {
+	0% {
+	    opacity: 0;
+	    -webkit-transform: translateX(1250px);
+	    transform: translateX(1250px);
+	    border: 3px solid black;
+	}
+	100% {
+	    -webkit-transform: translateX(0);
+	    transform: translateX(0);
+	    border: 3px solid pink;
+	}
+}
+
+@keyframes slideInLeft {
+	0% {
+	    opacity: 0;
+	    -webkit-transform: translateX(-1250px);
+	    transform: translateX(-1250px);
+	    border: 3px solid black;
+	}
+	100% {
+	    -webkit-transform: translateX(0);
+	    transform: translateX(0);
+	    border: 3px solid pink;
+	}
+}
+
+	.social_buttons_right {
+		-webkit-animation-name: slideInRight;
+		animation-name: slideInRight;
+		left: auto;
+		float: right;
+		right: 0px;
+
+		& > div > a{
+			float: right;
+		}
+	}
+
+	.social_buttons_left {
+		-webkit-animation-name: slideInLeft;
+		animation-name: slideInLeft;
+		left: 0px;
+		float: left;
+		right: auto;
+
+		& > div > a{
+			float: left;
+		}
+	}
+}
