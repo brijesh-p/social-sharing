@@ -340,7 +340,11 @@ var setBorderRadius = function(buttonContainer, buttonRoundness) {
 
 	//	add border-radius to first and last children of the container
 	buttonContainer.firstChild.firstChild.style['border-top-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
-	buttonContainer.lastChild.firstChild.style['border-bottom-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
+  if (buttonContainer.lastChild.id != 'closeBtn-soc-share') {
+    buttonContainer.lastChild.firstChild.style['border-bottom-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
+  } else {
+    buttonContainer.lastChild.previousSibling.firstChild.style['border-bottom-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
+  }
 
 	//	create new style for hovering over border-radius elements
 	var hoveredRadiusStyle = '#social_button_container > div > a:hover { border-top-' + radiusOrientation + '-radius: ' + buttonRoundness + 'px; border-bottom-' + radiusOrientation + '-radius: ' + buttonRoundness + 'px }';
@@ -361,9 +365,9 @@ var create_close_btn_html = function() {
   closeBtnDiv.className = 'soc-share-control';
 
   if (radiusOrientation === 'right') {
-    closeBtnDiv.innerHtml = '<div class="arrow-close right"></div>';
+    closeBtnDiv.innerHTML = '<div class="arrow-close right"></div>';
   } else {
-    closeBtnDiv.innerHtml = '<div class="arrow-close left"></div>';
+    closeBtnDiv.innerHTML = '<div class="arrow-close left"></div>';
   }
 
   return closeBtnDiv;
@@ -411,9 +415,9 @@ socialButtons.init = function(config) {
 			if (socialButtons.options.socials.linkedin.enabled) {
 				buttonContainer.appendChild(createButton('linkedin'));
 			}
-      // if (socialButtons.options.closeBtn == true) {
-      //   buttonContainer.appendChild(create_close_btn_html());
-      // }
+      if (socialButtons.options.closeBtn == true) {
+        buttonContainer.appendChild(create_close_btn_html());
+      }
 
 			setButtonSize();
 
