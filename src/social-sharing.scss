@@ -1,6 +1,6 @@
 $backgroundColour : rgba(255, 255, 255, 1);
 $animationDuration : 0.3s;
-$pinterestBackgroundColour: rgb(203, 33, 36);
+$pinterest_background_colour: rgb(203, 33, 36);
 $disabledColour: rgb(183, 183, 183);
 $thumbBorderColour: rgb(231,231,231);
 
@@ -100,7 +100,7 @@ body {
 
 			& > div {
 				border: 2px solid white;
-				background-color: $pinterestBackgroundColour;
+				background-color: $pinterest_background_colour;
 				width: 44px;
 				height: 44px;
 				border-radius: 50%;
@@ -126,9 +126,9 @@ body {
 		}
 
 		& > #masonry-wall {
-			margin:	15px 38px;
+			padding:	15px 38px;
 			overflow: scroll;
-			height: 100vh;
+			height: calc(100vh - 64px);
 			position: relative;
 
 			& > span.brick {
@@ -158,7 +158,7 @@ body {
 							position: absolute;
 							top: 10px;
 							left: 10px;
-							background-color: $pinterestBackgroundColour;
+							background-color: $pinterest_background_colour;
 							border-radius: 6px;
 							height: 36px;
 							padding: 9px;

@@ -88,9 +88,9 @@ body {
           float: right !important;
           cursor: pointer; }
     body #backdrop > #masonry-wall {
-      margin: 15px 38px;
+      padding: 15px 38px;
       overflow: scroll;
-      height: 100vh;
+      height: calc(100vh - 64px);
       position: relative; }
       body #backdrop > #masonry-wall > span.brick {
         transition: all 350ms ease-out;

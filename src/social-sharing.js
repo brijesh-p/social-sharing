@@ -1,8 +1,8 @@
 /*
  *	Customisable Social buttons
  *
- *	author: Janos Tamas Nemeth
- *	source: https://github.com/onsa/pure-social
+ *	author: Caliberi
+ *	source: https://github.com/caliberi/social-sharing
  *
  */
 
@@ -87,11 +87,12 @@ var socialButtons = {
 	//	default fallback options when not given
 	defaultOptions: {
 		orientation: 'right',
-		distanceFromTop: 15,
-		buttonMobileSize: 38,
-		buttonDesktopSize: 56,
+		distanceFromTop: 30,
+		buttonMobileSize: 20,
+		buttonDesktopSize: 25,
 		buttonRoundness: 0,
 		buttonGreyscale: false,
+    closeBtn: true,
 		socials: {
 			facebook: {
 				enabled: true
@@ -350,6 +351,24 @@ var setBorderRadius = function(buttonContainer, buttonRoundness) {
 	buttonContainer.appendChild(hoveredRadius);
 };
 
+var create_close_btn_html = function() {
+  // where the button to close should be pointing
+  var radiusOrientation = socialButtons.options.orientation === 'right' ? 'left' : 'right';
+
+  // div to contain innerHtml
+  var closeBtnDiv = document.createElement('div');
+  closeBtnDiv.id = 'closeBtn-soc-share';
+  closeBtnDiv.className = 'soc-share-control';
+
+  if (radiusOrientation === 'right') {
+    closeBtnDiv.innerHtml = '<div class="arrow-close right"></div>';
+  } else {
+    closeBtnDiv.innerHtml = '<div class="arrow-close left"></div>';
+  }
+
+  return closeBtnDiv;
+};
+
 //	INIT FUNCTION
 socialButtons.init = function(config) {
 
@@ -392,6 +411,9 @@ socialButtons.init = function(config) {
 			if (socialButtons.options.socials.linkedin.enabled) {
 				buttonContainer.appendChild(createButton('linkedin'));
 			}
+      // if (socialButtons.options.closeBtn == true) {
+      //   buttonContainer.appendChild(create_close_btn_html());
+      // }
 
 			setButtonSize();
 
