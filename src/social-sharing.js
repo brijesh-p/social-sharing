@@ -92,7 +92,7 @@ var socialButtons = {
 		buttonDesktopSize: 25,
 		buttonRoundness: 0,
 		buttonGreyscale: false,
-    closeBtn: true,
+    closeBtn: false,
 		socials: {
 			facebook: {
 				enabled: true
@@ -312,6 +312,7 @@ var createButton = function(social) {
 	//	create buttons and add templates
 	socialButtons[social + '_button'] = document.createElement('div');
 	socialButtons[social + '_button'].id = social + '_button';
+  socialButtons[social + '_button'].className = 'soc_button_soc_container';
 	socialButtons[social + '_button'].innerHTML = templates[social];
 	if (socialButtons.options.buttonGreyscale) {
 		colours[social].fill(Math.ceil(0.299 * colours[social][0] + 0.587 * colours[social][1] + 0.114 * colours[social][2]));
@@ -355,6 +356,26 @@ var setBorderRadius = function(buttonContainer, buttonRoundness) {
 	buttonContainer.appendChild(hoveredRadius);
 };
 
+var toggleClose = function() {
+  var elementToClose = document.getElementsByClassName('soc_button_soc_container');
+  var closeBtn = document.getElementById('closeBtn-soc-share');
+
+  if(closeBtn.classList.contains('toggled')) {
+    closeBtn.classList.remove('toggled');
+  } else {
+    closeBtn.classList += ' toggled';
+  }
+
+  for (var i = 0; i < elementToClose.length; i++) {
+      if(elementToClose[i].style.left === '100%') {
+        elementToClose[i].style.left = '0';
+       
+      } else {
+        elementToClose[i].style.left = '100%';
+      }
+  }
+}
+
 var create_close_btn_html = function() {
   // where the button to close should be pointing
   var radiusOrientation = socialButtons.options.orientation === 'right' ? 'left' : 'right';
@@ -363,6 +384,12 @@ var create_close_btn_html = function() {
   var closeBtnDiv = document.createElement('div');
   closeBtnDiv.id = 'closeBtn-soc-share';
   closeBtnDiv.className = 'soc-share-control';
+
+  window.onload = function() {
+    closeBtnDiv.onclick = function foo() {
+      toggleClose();
+    }
+  }
 
   if (radiusOrientation === 'right') {
     closeBtnDiv.innerHTML = '<div class="arrow-close right"></div>';
