@@ -1,15 +1,19 @@
 {
   "name": "social-sharing",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "social share button add-on",
-  "author": "Janos Nemeth",
+  "keywords": "social, share, buttons",
+  "author": "Caliber",
+  "repository": "https://github.com/caliberi/social-sharing",
+  "license": "MIT",
   "dependencies": {
     "pure-masonry": "^0.0.2"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^3.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-jscs": "^3.0.1",
     "grunt-sass": "^1.2.1",

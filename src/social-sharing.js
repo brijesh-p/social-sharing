@@ -1,8 +1,8 @@
 /*
  *	Customisable Social buttons
  *
- *	author: Janos Tamas Nemeth
- *	source: https://github.com/onsa/pure-social
+ *	author: Caliberi
+ *	source: https://github.com/caliberi/social-sharing
  *
  */
 
@@ -87,11 +87,12 @@ var socialButtons = {
 	//	default fallback options when not given
 	defaultOptions: {
 		orientation: 'right',
-		distanceFromTop: 15,
-		buttonMobileSize: 38,
-		buttonDesktopSize: 56,
+		distanceFromTop: 30,
+		buttonMobileSize: 20,
+		buttonDesktopSize: 25,
 		buttonRoundness: 0,
 		buttonGreyscale: false,
+    closeBtn: false,
 		socials: {
 			facebook: {
 				enabled: true
@@ -311,6 +312,7 @@ var createButton = function(social) {
 	//	create buttons and add templates
 	socialButtons[social + '_button'] = document.createElement('div');
 	socialButtons[social + '_button'].id = social + '_button';
+  socialButtons[social + '_button'].className = 'soc_button_soc_container';
 	socialButtons[social + '_button'].innerHTML = templates[social];
 	if (socialButtons.options.buttonGreyscale) {
 		colours[social].fill(Math.ceil(0.299 * colours[social][0] + 0.587 * colours[social][1] + 0.114 * colours[social][2]));
@@ -339,7 +341,11 @@ var setBorderRadius = function(buttonContainer, buttonRoundness) {
 
 	//	add border-radius to first and last children of the container
 	buttonContainer.firstChild.firstChild.style['border-top-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
-	buttonContainer.lastChild.firstChild.style['border-bottom-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
+  if (buttonContainer.lastChild.id != 'closeBtn-soc-share') {
+    buttonContainer.lastChild.firstChild.style['border-bottom-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
+  } else {
+    buttonContainer.lastChild.previousSibling.firstChild.style['border-bottom-' + radiusOrientation + '-radius'] = buttonRoundness + 'px';
+  }
 
 	//	create new style for hovering over border-radius elements
 	var hoveredRadiusStyle = '#social_button_container > div > a:hover { border-top-' + radiusOrientation + '-radius: ' + buttonRoundness + 'px; border-bottom-' + radiusOrientation + '-radius: ' + buttonRoundness + 'px }';
@@ -348,6 +354,50 @@ var setBorderRadius = function(buttonContainer, buttonRoundness) {
 
 	//	add new style to button container
 	buttonContainer.appendChild(hoveredRadius);
+};
+
+var toggleClose = function() {
+  var elementToClose = document.getElementsByClassName('soc_button_soc_container');
+  var closeBtn = document.getElementById('closeBtn-soc-share');
+
+  if(closeBtn.classList.contains('toggled')) {
+    closeBtn.classList.remove('toggled');
+  } else {
+    closeBtn.classList += ' toggled';
+  }
+
+  for (var i = 0; i < elementToClose.length; i++) {
+      if(elementToClose[i].style.left === '100%') {
+        elementToClose[i].style.left = '0';
+       
+      } else {
+        elementToClose[i].style.left = '100%';
+      }
+  }
+}
+
+var create_close_btn_html = function() {
+  // where the button to close should be pointing
+  var radiusOrientation = socialButtons.options.orientation === 'right' ? 'left' : 'right';
+
+  // div to contain innerHtml
+  var closeBtnDiv = document.createElement('div');
+  closeBtnDiv.id = 'closeBtn-soc-share';
+  closeBtnDiv.className = 'soc-share-control';
+
+  window.onload = function() {
+    closeBtnDiv.onclick = function foo() {
+      toggleClose();
+    }
+  }
+
+  if (radiusOrientation === 'right') {
+    closeBtnDiv.innerHTML = '<div class="arrow-close right"></div>';
+  } else {
+    closeBtnDiv.innerHTML = '<div class="arrow-close left"></div>';
+  }
+
+  return closeBtnDiv;
 };
 
 //	INIT FUNCTION
@@ -392,6 +442,9 @@ socialButtons.init = function(config) {
 			if (socialButtons.options.socials.linkedin.enabled) {
 				buttonContainer.appendChild(createButton('linkedin'));
 			}
+      if (socialButtons.options.closeBtn == true) {
+        buttonContainer.appendChild(create_close_btn_html());
+      }
 
 			setButtonSize();
 

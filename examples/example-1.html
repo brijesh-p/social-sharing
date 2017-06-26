@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Social Sharing Add-on Example</title>
+      <meta name="description" content="Social Sharing Add-on Example with different options">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <!-- meta stuff -->
+      <meta property="fb:app_id" content="419414451723615" />
+      <meta property="og:title" content="Social Sharing Add-on Example" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="http://example.com" />
+      <meta property="og:image" content="http://via.placeholder.com/450x250" />
+      <meta property="og:description" content="Social Sharing Add-on Example with different options" />
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="http://example.com">
+      <meta name="twitter:creator" content="Caliberi">
+      <meta name="twitter:title" content="Social Sharing Add-on Example" />
+      <meta name="twitter:description" content="Social Sharing Add-on Example with different options">
+      <meta name="twitter:image:src" content="http://via.placeholder.com/450x250">
+      <!-- /end meta stuff -->
+
+      <link rel="stylesheet" href="../dist/css/social-sharing.min.css">
+      <link rel="stylesheet" href="../node_modules/pure-masonry/src/pureMasonry.min.css">
+
+      <style>
+        html,body {
+          font-size: 100%;
+          min-height: 100%;
+        }
+        body {
+          padding: 0;
+          margin: 0;
+          background: rgba(51, 51, 51, .1);
+        }
+        article {
+          display: block;
+        }
+        section {
+          display: block;
+          height: 100%;
+          min-height: 100vh;
+        }
+        h1 {
+          font-size: 50px;
+        }
+        p {
+          font-size: 16px;
+        }
+        h1 {
+          margin: 0;
+          padding: 0 0 1%;
+        }
+        .inner {
+          padding: 20px;
+        }
+      </style>
+  </head>
+  <body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+  <article>
+    <section>
+      <div class="inner">
+        <h1>Title</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos ab cupiditate optio ratione vel autem ipsa nam earum consectetur facilis aperiam, accusamus sapiente voluptatibus. Sed animi quas culpa facilis perferendis.</p>
+        <img src="http://via.placeholder.com/350x150">
+      </div>
+    </section>
+    <section>
+      <div class="inner">
+        <h1>Title</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos ab cupiditate optio ratione vel autem ipsa nam earum consectetur facilis aperiam, accusamus sapiente voluptatibus. Sed animi quas culpa facilis perferendis.</p>
+        <img src="http://via.placeholder.com/450x250" alt="This is alt attr text" >
+      </div>
+    </section>
+    <section>
+      <div class="inner">
+        <h1>Title</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos ab cupiditate optio ratione vel autem ipsa nam earum consectetur facilis aperiam, accusamus sapiente voluptatibus. Sed animi quas culpa facilis perferendis.</p>
+        <img src="http://via.placeholder.com/250x250" title="This is title attr text">
+      </div>
+    </section>
+  </article>
+  
+  <script type="text/javascript" src="../node_modules/pure-masonry/src/pureMasonry.js"></script>
+  <script type="text/javascript" src="../src/social-sharing.js"></script>
+
+  <script>
+    socialButtons.init({
+      distanceFromTop: 35,
+      orientation: 'right',
+      buttonDesktopSize: 25,
+      buttonMobileSize: 20,
+      buttonSize: 4,
+      buttonRoundness: 7,
+      googleAPIKey: '',
+      closeBtn: true,
+      socials: {
+        facebook: {
+          enabled: true
+        },
+        twitter: {
+          enabled: true,
+          text: 'Please feel free to contribute!',
+          hashtag: 'SocialSharePlugin',
+          screenName: 'Caliberi'
+        },
+        googleplus: {
+          enabled: true,
+          url: ''
+        },
+        pinterest: {
+          enabled: true
+        },
+        linkedin: {
+          enabled: true,
+          url: ''
+        }
+      }
+    });
+  </script>
+  </body>
+</html>

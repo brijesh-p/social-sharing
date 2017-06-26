@@ -6,6 +6,9 @@ module.exports = function(grunt) {
 
 	require('jit-grunt')(grunt);
 
+  require('grunt-contrib-uglify')(grunt);
+
+
 	grunt.initConfig({
 		jshint: {
 			options: {
@@ -23,8 +26,20 @@ module.exports = function(grunt) {
 			options: {
 				config: '.jscsrc'
 			},
-			src: '*.js'
+			src: 'src/*.js'
 		},
+    uglify: {
+      options: {
+        compress: {
+          drop_console: true
+        }
+      },
+      my_target: {
+        files: {
+          'dist/js/social-sharing.min.js': ['src/social-sharing.js']
+        }
+      }
+    },
 		sass: {
 			dist: {
 				options: {
@@ -33,23 +48,24 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: 'src',
-					src: ['socialSharing.scss'],
-					dest: 'src',
+					src: ['social-sharing.scss'],
+					dest: 'dist/css',
 					ext: '.min.css'
 				}]
 			}
 		},
 		watch: {
 			styles: {
-				files: ['*.scss'],
+				files: ['src/*.scss'],
 				tasks: ['sass']
 			},
 			js: {
-				files: ['*.js'],
-				tasks: ['jshint', 'jscs']
+				files: ['src/*.js'],
+				tasks: ['jshint', 'uglify']
 			}
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'jscs', 'sass']);
+	grunt.registerTask('default', ['jshint', 'sass', 'uglify']);
+
 };
