@@ -1,14 +1,14 @@
 {
   "name": "social-sharing",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "social share button add-on",
-  "keywords": "social, share, buttons",
-  "author": "Caliber",
+  "keywords": ["social, share, buttons"],
+  "author": "Caliber Interactive",
   "repository": "https://github.com/caliberi/social-sharing",
   "license": "MIT",
   "dependencies": {
-    "pure-masonry": "^0.0.2"
+    "pure-masonry-js": "^0.1.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
