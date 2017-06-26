@@ -30,6 +30,7 @@ socialButtons.init({
   buttonSize: 4,
   buttonRoundness: 7,
   googleAPIKey: '',
+  closeBtn: true,
   socials: {
     facebook: {
       enabled: true
@@ -66,6 +67,6 @@ socialButtons.init({
 
 If Twitter is enabled, **text** and **hashtag** are mandatory fields; if **screenName**: is not specified, the value of 'hashtag' is used as default. If **googleAPIKey** is provided, a shortened url is sent to Twitter.
 
-**Tests**
+**Examples**
 
-In order to view how the output looks like, open `test/index.html` in your browser. 
+In order to view how the output looks like, open `examples/example-1.html` in your browser. Ideally you would need to run a server to see this working.
