@@ -12,13 +12,13 @@ Add .css and .js files of socialSharing and its dependency, pureMasonry to your 
 <head>
 	...
 	<link rel="stylesheet" href="node_modules/pure-masonry/src/pureMasonry.min.css">
-	<link rel="stylesheet" href="node_modules/social-sharing/src/socialSharing.min.css">
+	<link rel="stylesheet" href="node_modules/social-sharing/dist/css/socialSharing.min.css">
 	...
 </head>
 <body>
 	...
 	<script type="text/javascript" src="node_modules/pure-masonry/src/pureMasonry.min.js"></script>
-	<script type="text/javascript" src="node_modules/social-sharing/src/socialSharing.min.js"></script>
+	<script type="text/javascript" src="node_modules/social-sharing/dist/js/socialSharing.min.js"></script>
 </body>
 ```
 **2.**
