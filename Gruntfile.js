@@ -1,5 +1,7 @@
 'use strict';
 
+var webpackConfig = require('./webpack.config');
+
 module.exports = function(grunt) {
 
 	require('time-grunt')(grunt);
@@ -7,7 +9,6 @@ module.exports = function(grunt) {
 	require('jit-grunt')(grunt);
 
   require('grunt-contrib-uglify')(grunt);
-
 
 	grunt.initConfig({
 		jshint: {
@@ -22,6 +23,13 @@ module.exports = function(grunt) {
 				]
 			}
 		},
+    webpack: {
+      options: {
+        stats: !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+      },
+      prod: webpackConfig,
+      dev: Object.assign({ watch: true }, webpackConfig)
+    },
 		jscs: {
 			options: {
 				config: '.jscsrc'
@@ -61,11 +69,11 @@ module.exports = function(grunt) {
 			},
 			js: {
 				files: ['src/*.js'],
-				tasks: ['jshint', 'uglify']
+				tasks: ['webpack']
 			}
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'sass', 'uglify']);
+	grunt.registerTask('default', ['jshint', 'sass', 'webpack']);
 
 };

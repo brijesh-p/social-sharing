@@ -88,41 +88,38 @@
   </article>
   
   <script type="text/javascript" src="../node_modules/pure-masonry-js/dist/pureMasonry.js"></script>
-  <script type="text/javascript" src="../src/social-sharing.js"></script>
+  <script type="text/javascript" src="../test/js/social-sharing.js"></script>
 
   <script>
-    socialButtons.init({
-      distanceFromTop: 35,
-      orientation: 'right',
-      buttonDesktopSize: 25,
-      buttonMobileSize: 20,
-      buttonSize: 4,
-      buttonRoundness: 7,
-      googleAPIKey: '',
-      closeBtn: true,
-      socials: {
-        facebook: {
-          enabled: true
-        },
-        twitter: {
-          enabled: true,
-          text: 'Please feel free to contribute!',
-          hashtag: 'SocialSharePlugin',
-          screenName: 'Caliberi'
-        },
-        googleplus: {
-          enabled: true,
-          url: ''
-        },
-        pinterest: {
-          enabled: true
-        },
-        linkedin: {
-          enabled: true,
-          url: ''
-        }
-      }
-    });
+  
+    var defaultOptions = {
+     orientation: 'right',
+     distanceFromTop: 30,
+     buttonMobileSize: 20,
+     buttonDesktopSize: 25,
+     buttonRoundness: 0,
+     buttonGreyscale: false,
+      closeBtn: false,
+     socials: {
+       facebook: {
+         enabled: true
+       },
+       twitter: {
+         enabled: true
+       },
+       googleplus: {
+         enabled: false
+       },
+       pinterest: {
+         enabled: false
+       },
+       linkedin: {
+         enabled: false
+       }
+     }
+    };
+    
+    SocialSharing.init(defaultOptions);
   </script>
   </body>
 </html>
