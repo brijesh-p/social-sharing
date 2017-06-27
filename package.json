@@ -1,12 +1,23 @@
 {
   "name": "social-sharing",
+  "title": "Social Sharing",
   "private": false,
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "social share button add-on",
-  "keywords": ["social, share, buttons"],
-  "author": "Caliber Interactive",
-  "repository": "https://github.com/caliberi/social-sharing",
+  "keywords": ["social", "share", "buttons"],
+  "author": {
+   "name": "Caliber Interactive",
+   "url": "https://caliberi.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caliberi/social-sharing"
+  },
+  "bugs": {
+    "url": "https://github.com/caliberi/social-sharing/issues"
+  },
   "license": "MIT",
+  "main": "dist/js/social-sharing.min.js",
   "dependencies": {
     "pure-masonry-js": "^0.1.1"
   },
