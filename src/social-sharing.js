@@ -80,7 +80,7 @@ var colours = {
 	googleplus: [220, 78, 65],
 	linkedin: [0,119,181]
 };
-
+window.socialButtons; 
 //	define main object with default options
 var socialButtons = {
 
@@ -112,6 +112,7 @@ var socialButtons = {
 		}
 	}
 };
+window.socialButtons = socialButtons;
 
 //	APP FUNCTIONS
 
