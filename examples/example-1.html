@@ -24,7 +24,6 @@
       <!-- /end meta stuff -->
 
       <link rel="stylesheet" href="../dist/css/social-sharing.min.css">
-      <link rel="stylesheet" href="../node_modules/pure-masonry-js/dist/pureMasonry.css">
 
       <style>
         html,body {
@@ -86,40 +85,48 @@
       </div>
     </section>
   </article>
-  
-  <script type="text/javascript" src="../node_modules/pure-masonry-js/dist/pureMasonry.js"></script>
+
   <script type="text/javascript" src="../test/js/social-sharing.js"></script>
 
   <script>
-  
-    var defaultOptions = {
-     orientation: 'right',
-     distanceFromTop: 30,
-     buttonMobileSize: 20,
-     buttonDesktopSize: 25,
-     buttonRoundness: 0,
-     buttonGreyscale: false,
-      closeBtn: false,
-     socials: {
-       facebook: {
-         enabled: true
-       },
-       twitter: {
-         enabled: true
-       },
-       googleplus: {
-         enabled: false
-       },
-       pinterest: {
-         enabled: false
-       },
-       linkedin: {
-         enabled: false
-       }
-     }
+    var options = {
+      orientation: 'left',
+      buttonDesktopSize: 30,
+      buttonRoundness: 5,
+      buttonGreyscale: false,
+      googleAPIKey: 'AIzaSyDqNnYEKDxzsuwsP56eMrndC0lN8k6k3Kw',
+      distanceFromTop: 20,
+      closeBtn: true,
+      socials: {
+        facebook: {
+          enabled: true,
+          url: 'https://caliberi.com',
+          name: 'Social Sharing Plugin Add-on',
+          caption: 'This is a caption text',
+          description: 'This is a description text'
+        },
+        twitter: {
+          enabled: true,
+          text: 'Social Sharing Plugin Add-on',
+          url: 'https://caliberi.com',
+          screenName: 'Caliberi',
+          hashtag: 'SocialShare'
+        },
+        pinterest: {
+          enabled: true,
+          url: 'https://caliberi.com'
+        },
+        googleplus: {
+          enabled: true,
+          url: 'https://caliberi.com'
+        },
+        linkedin: {
+          enabled: true,
+          url: 'https://caliberi.com'
+        }
+      }
     };
-    
-    SocialSharing.init(defaultOptions);
+    SocialSharing.init(options);
   </script>
   </body>
 </html>

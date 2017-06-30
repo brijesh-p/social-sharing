@@ -17,154 +17,127 @@ const variables = new Variables();
 const core_functions = new CoreFunctions();
 const html_elements = new HtmlElemets();
 
-let defaultOptions = helpers.defaultOptions;
-let global_config = defaultOptions;
-let vars = variables.variables;
-
-function initConfig(config) {
-  console.log(config);
-  openPinterest();
-    //  validate passed in configuration parameter
-    // if (typeof config !== 'undefined' && typeof config !== 'object') {
-        // console.log('No configuration passed, please visit https://github.com/caliberi/social-sharing for an example.');
-    // } else {
-
-    //     //  define options
-    //     global_config.options = helpers.copyObject(defaultOptions);
-    //     helpers.updateObject(config, global_config.options);
-
-    //     //  check config validity
-    //     if (isNaN(global_config.options.distanceFromTop) || (global_config.options.orientation !== 'left' && global_config.options.orientation !== 'right') || isNaN(global_config.options.buttonMobileSize) || isNaN(global_config.options.buttonDesktopSize) || isNaN(global_config.options.buttonRoundness) || (global_config.options.socials.twitter.enabled && (typeof global_config.options.socials.twitter.text === 'undefined' || typeof global_config.options.socials.twitter.hashtag === 'undefined'))) {
-    //         console.log('Invalid configuration, please visit https://github.com/caliberi/social-sharing for an example.');
-    //     } else {
-    //         if (typeof global_config.options.socials.twitter.screenName === 'undefined') {
-    //             global_config.options.socials.twitter.screenName = global_config.options.socials.twitter.hashtag;
-    //         }
-
-    //         //  create container
-    //         buttonContainer = document.createElement('div');
-    //         buttonContainer.id = 'social_button_container';
-    //         buttonContainer.className = 'social_buttons_' + global_config.options.orientation;
-    //         buttonContainer.style.top = global_config.options.distanceFromTop + 'vh';
-
-    //         //  create buttons in this! order
-    //         if (global_config.options.socials.facebook.enabled) {
-    //             buttonContainer.appendChild(createButton('facebook'));
-    //         }
-    //         if (global_config.options.socials.twitter.enabled) {
-    //             buttonContainer.appendChild(createButton('twitter'));
-    //         }
-    //         if (global_config.options.socials.googleplus.enabled) {
-    //             buttonContainer.appendChild(createButton('googleplus'));
-    //         }
-    //         if (global_config.options.socials.pinterest.enabled) {
-    //             buttonContainer.appendChild(createButton('pinterest'));
-    //         }
-    //         if (global_config.options.socials.linkedin.enabled) {
-    //             buttonContainer.appendChild(createButton('linkedin'));
-    //         }
-    //         if (global_config.options.closeBtn == true) {
-    //             buttonContainer.appendChild(create_close_btn_html());
-    //         }
-
-    //         setButtonSize();
-
-    //         if (global_config.options.buttonRoundness !== global_config.defaultOptions.buttonRoundness) {
-    //             setBorderRadius(buttonContainer, global_config.options.buttonRoundness);
-    //         }
-
-    //         //  add app to DOM
-    //         variable.body.appendChild(buttonContainer);
-    //     }
-    // }
-};
-
-window.onresize = function() {
-    html_elements.setButtonSize();
-};
-
+let defaultConfig = variables.variables.defaultOptions;
+let options;
 
 module.exports = {
-    init: function(config) {
+  init: function(config) {
 
-        if (typeof config === 'undefined') {
-            initConfig(defaultOptions);
-        } else {
-            initConfig(config);
-        }
+    // check if passed config is type object.
+    options = typeof config === 'undefined' || typeof config !== 'object' ? defaultConfig : config;
+    
+    // from now on use options
+    let orientation = typeof options.orientation === 'undefined' ? defaultConfig.orientation : options.orientation;
+    let distanceFromTop = typeof options.distanceFromTop === 'undefined' ? defaultConfig.distanceFromTop : options.distanceFromTop;
+    let buttonMobileSize = typeof options.buttonMobileSize === 'undefined' ? defaultConfig.buttonMobileSize : options.buttonMobileSize;
+    let buttonDesktopSize = typeof options.buttonDesktopSize === 'undefined' ? defaultConfig.buttonDesktopSize : options.buttonDesktopSize;
+    let buttonRoundness = typeof options.buttonRoundness === 'undefined' ? defaultConfig.buttonRoundness : options.buttonRoundness;
+    let buttonGreyscale = typeof options.buttonGreyscale === 'undefined' ? defaultConfig.buttonGreyscale : options.buttonGreyscale;
+    let closeBtn = typeof options.closeBtn === 'undefined' ? defaultConfig.closeBtn : options.closeBtn;
+      
+    // socials obj type
+    let facebook = typeof options.socials === 'undefined' || typeof options.socials.facebook === 'undefined' ? defaultConfig.socials.facebook : options.socials.facebook;
+    let twitter = typeof options.socials === 'undefined' || typeof options.socials.twitter === 'undefined' ? defaultConfig.socials.twitter : options.socials.twitter;
+    let googleplus = typeof options.socials === 'undefined' || typeof options.socials.googleplus === 'undefined' ? defaultConfig.socials.googleplus : options.socials.googleplus;
+    let pinterest = typeof options.socials === 'undefined' || typeof options.socials.pinterest === 'undefined' ? defaultConfig.socials.pinterest : options.socials.pinterest;
+    let linkedin = typeof options.socials === 'undefined' || typeof options.socials.linkedin === 'undefined' ? defaultConfig.socials.linkedin : options.socials.linkedin;
 
+    options = {
+      orientation: orientation,
+      distanceFromTop: distanceFromTop,
+      buttonMobileSize: buttonMobileSize,
+      buttonDesktopSize: buttonDesktopSize,
+      buttonRoundness: buttonRoundness,
+      buttonGreyscale: buttonGreyscale,
+      closeBtn: closeBtn,
+      socials: {
+        facebook,
+        twitter,
+        googleplus,
+        pinterest,
+        linkedin
+      }
     }
+
+    // start up the library
+    initConfig(options);
+
+  }
 }
 
-var openPinterest = function() {
-    let body = vars.body;
-    let backDrop = vars.backDrop;
-    let images = vars.images;
+function initConfig(config) {
 
-    //  disable scroll on main page
-    body.style.overflow = 'hidden';
+  window.onload = function() {
 
-    //  create backdrop and header
-    backDrop = document.createElement('div');
-    backDrop.id = 'backdrop';
-    backDrop.innerHTML += vars.templates.pinHeader;
+    let buttonContainer;
+    buttonContainer = document.createElement('div');
+    buttonContainer.id = 'social_button_container';
+    buttonContainer.className = 'social_buttons_' + config.orientation;
+    buttonContainer.style.top = config.distanceFromTop + 'vh';
 
-    //  create body
-    var pinBody = document.createElement('div');
-    pinBody.id = 'masonry-wall';
-    backDrop.appendChild(pinBody);
-
-    //  loop through images
-    for (var imageIndex = 0; imageIndex < images.length; imageIndex++) {
-        var image = {};
-        image.Url = images[imageIndex].currentSrc;
-        image.width = images[imageIndex].width;
-        image.height = images[imageIndex].height;
-        if (images[imageIndex].alt.length > 0) {
-            image.text = images[imageIndex].alt;
-        } else if (images[imageIndex].title.length > 0) {
-            image.text = images[imageIndex].title;
-        } else {
-            image.text = helpers.getContentByMetaTagName('description', 'name');
-        }
-
-        //  create thumbnail
-        var thumb = document.createElement('span');
-        thumb.className = 'brick';
-        var thumbWrapper = document.createElement('div');
-        thumbWrapper.innerHTML = vars.templates.thumb.replace('{{imageUrl}}', image.Url).replace('{{index}}', imageIndex).replace('{{dimensions}}', image.width + ' x ' + image.height);
-
-        //  add thumbnail text
-        var thumbText = document.createElement('div');
-        thumbText.className = 'thumb_text';
-        thumbText.innerHTML = '<span>' + image.text + '</span>';
-        thumbWrapper.appendChild(thumbText);
-
-        //  add thumbnail link
-        var thumbLink = document.createElement('div');
-        thumbLink.className = 'thumb_link';
-        thumbLink.innerHTML = '<span>' + window.location.href.split('//')[1] + '</span>';
-        thumbWrapper.appendChild(thumbLink);
-        thumb.appendChild(thumbWrapper);
-
-        //  append thumb to pinterest body
-        pinBody.appendChild(thumb);
+    //  create buttons in this! order
+    if (config.socials.facebook.enabled) {
+        buttonContainer.appendChild(html_elements.createButton('facebook'));
+    }
+    if (config.socials.twitter.enabled) {
+        buttonContainer.appendChild(html_elements.createButton('twitter'));
+    }
+    if (config.socials.googleplus.enabled) {
+        buttonContainer.appendChild(html_elements.createButton('googleplus'));
+    }
+    if (config.socials.pinterest.enabled) {
+        buttonContainer.appendChild(html_elements.createButton('pinterest'));
+    }
+    if (config.socials.linkedin.enabled) {
+        buttonContainer.appendChild(html_elements.createButton('linkedin'));
+    }
+    if (config.closeBtn == true) {
+        buttonContainer.appendChild(html_elements.create_close_btn_html(options.orientation));
     }
 
-    body.appendChild(backDrop);
-    
-    let masonry_options = {
-      width: 236,
-      gutter_top: 15,
-      gutter_left: 15,
-      resize: true
-    };
-    PureMasonry.build(masonry_options);
-    // mason.options.underConstruction = true;
-};
+    variables.variables.body.appendChild(buttonContainer);
 
-var callPinterest = function(element) {
-    var imageIndex = parseInt(element.attributes['data-index'].value);
-    return window.open('https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(window.location.href) + '&media=' + images[imageIndex].src, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=750');
-};
+    html_elements.setButtonSize(options.buttonDesktopSize, options.buttonMobileSize);
+    html_elements.setBorderRadius(buttonContainer, options.buttonRoundness, options.orientation);
 
+    if (config.socials.facebook.enabled) {
+      document.querySelector('#facebook_button > a').addEventListener('click',function(){
+        core_functions.openFacebook(options.socials.facebook.name, options.socials.facebook.caption, options.socials.facebook.description, options.socials.facebook.url);
+      });
+    }
+
+    if (config.socials.twitter.enabled) {
+      document.querySelector('#twitter_button > a').addEventListener('click',function(){
+        core_functions.openTwitter(options.socials.twitter.text,options.socials.twitter.hashtag,options.socials.twitter.url,options.socials.twitter.screenName);
+      });
+    }
+
+    if (config.socials.pinterest.enabled) {
+      document.querySelector('#pinterest_button > a').addEventListener('click',function(){
+        core_functions.openPinterest();
+      });
+    }
+
+    if (config.socials.googleplus.enabled) {
+      document.querySelector('#googleplus_button > a').addEventListener('click',function(){
+        core_functions.openGooglePlus(options.socials.googleplus.url);
+      });
+    }
+
+    if (config.socials.linkedin.enabled) {
+      document.querySelector('#linkedin_button > a').addEventListener('click',function(){
+        core_functions.openLinkedIn(options.socials.linkedin.url);
+      });
+    }
+
+    if (config.socials.linkedin.enabled) {
+      document.querySelector('#closeBtn-soc-share').addEventListener('click',function(){
+        html_elements.toggleClose(options.orientation);
+      });
+    }
+  }
+}
+
+window.onresize = function() {
+  html_elements.setButtonSize(options.buttonDesktopSize, options.buttonMobileSize)
+}
