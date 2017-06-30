@@ -86,6 +86,11 @@ SocialSharing.init();
             <td>2 values currently possible, <code>left</code> or <code>right</code></td>
         </tr>
         <tr>
+            <td>googleAPIKey</td>
+            <td>none (String)</td>
+            <td>Get you own google api shortner. <a href="https://developers.google.com/url-shortener/v1/getting_started">https://developers.google.com/url-shortener/v1/getting_started</a> you can get your own key here (scroll down and find a button (<code>GET A KEY</code>)). This will be used to shorten your url for twitter</td>
+        </tr>
+        <tr>
             <td>distanceFromTop</td>
             <td>30 (String)</td>
             <td>this would be 30vh from the top</td>
@@ -123,14 +128,16 @@ SocialSharing.init();
 **List of social settings** (part of `socials object`)
 
 For example
-```json
-socials: {
-    facebook: {
-        enabled: true,
-        url: 'https://example.com'
-    }
-    twitter {
-        ...
+```javascript
+var options = {
+    socials: {
+        facebook: {
+            enabled: true,
+            url: 'https://example.com'
+        }
+        twitter {
+            enabled: true
+        }
     }
 }
 ```
@@ -149,21 +156,26 @@ all social netowork have at least 2 params, its `enabled: true or false` and `ur
 
 Facebooks and twitter have more than two and below is example of both.
 
-```json
-facebook: {
-  enabled: true,
-  url: 'https://caliberi.com',
-  name: 'Social Sharing Plugin Add-on',
-  caption: 'This is a caption text',
-  description: 'This is a description text'
-},
-twitter: {
-  enabled: true,
-  text: 'Social Sharing Plugin Add-on',
-  url: 'https://caliberi.com',
-  screenName: 'Caliberi',
-  hashtag: 'SocialShare'
+```javascript
+var options = {
+    socials: {
+          facebook: {
+          enabled: true,
+          url: 'https://caliberi.com',
+          name: 'Social Sharing Plugin Add-on',
+          caption: 'This is a caption text',
+          description: 'This is a description text'
+        },
+        twitter: {
+          enabled: true,
+          text: 'Social Sharing Plugin Add-on',
+          url: 'https://caliberi.com',
+          screenName: 'Caliberi',
+          hashtag: 'SocialShare'
+        } 
+    }
 }
+
 ```
 
 **Examples**

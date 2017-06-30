@@ -172,9 +172,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var variables = new _variables2.default();
-var vars = variables.variables;
-var socialButtons = vars.defaultOptions;
-console.log(socialButtons);
 
 var Helpers = function Helpers() {
   _classCallCheck(this, Helpers);
@@ -200,12 +197,12 @@ var Helpers = function Helpers() {
     return window.open('https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(window.location.href) + '&media=' + imgs[imageIndex].src, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=750');
   };
 
-  this.defineShortPageUrl = function (sourceUrl) {
+  this.defineShortPageUrl = function (sourceUrl, apiKey) {
 
     //  return promise
     return new Promise(function (resolve, reject) {
-      var googleAPIKey = socialButtons.socials.googleplus.googleAPIKey;
-      if (typeof googleAPIKey !== 'undefined') {
+      var googleAPIKey = apiKey;
+      if (typeof googleAPIKey !== 'undefined' || googleAPIKey === '') {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
           if (this.readyState === 4 && this.status === 200) {
@@ -444,15 +441,15 @@ var CoreFunctions = function CoreFunctions() {
     });
   };
 
-  this.openTwitter = function (text, hashtag, link, screenName) {
+  this.openTwitter = function (text, hashtag, link, screenName, optionsKey) {
 
     //  define default values
     text = typeof text !== 'undefined' ? text : encodeURI(helpers.getContentByMetaTagName('og:title', 'property'));
     hashtag = typeof hashtag !== 'undefined' ? hashtag : encodeURI(helpers.getContentByMetaTagName('og:title', 'property'));
     link = typeof link !== 'undefined' ? link : window.location.href;
     screenName = typeof screenName !== 'undefined' ? screenName : encodeURI(helpers.getContentByMetaTagName('og:title', 'property'));
-
-    helpers.defineShortPageUrl(link, socialButtons.googleAPIKey).then(function (response) {
+    console.log(optionsKey);
+    helpers.defineShortPageUrl(link, optionsKey).then(function (response) {
       return window.open('https://twitter.com/intent/tweet?text=' + text + '&hashtags=' + hashtag + '&url=' + response + '&screen_name=' + screenName, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
     });
   };
@@ -864,6 +861,7 @@ module.exports = {
     var buttonRoundness = typeof options.buttonRoundness === 'undefined' ? defaultConfig.buttonRoundness : options.buttonRoundness;
     var buttonGreyscale = typeof options.buttonGreyscale === 'undefined' ? defaultConfig.buttonGreyscale : options.buttonGreyscale;
     var closeBtn = typeof options.closeBtn === 'undefined' ? defaultConfig.closeBtn : options.closeBtn;
+    var googleAPIKey = typeof options.googleAPIKey === 'undefined' ? defaultConfig.googleAPIKey : options.googleAPIKey;
 
     // socials obj type
     var facebook = typeof options.socials === 'undefined' || typeof options.socials.facebook === 'undefined' ? defaultConfig.socials.facebook : options.socials.facebook;
@@ -874,6 +872,7 @@ module.exports = {
 
     options = {
       orientation: orientation,
+      googleAPIKey: googleAPIKey,
       distanceFromTop: distanceFromTop,
       buttonMobileSize: buttonMobileSize,
       buttonDesktopSize: buttonDesktopSize,
@@ -936,7 +935,7 @@ function initConfig(config) {
 
     if (config.socials.twitter.enabled) {
       document.querySelector('#twitter_button > a').addEventListener('click', function () {
-        core_functions.openTwitter(options.socials.twitter.text, options.socials.twitter.hashtag, options.socials.twitter.url, options.socials.twitter.screenName);
+        core_functions.openTwitter(options.socials.twitter.text, options.socials.twitter.hashtag, options.socials.twitter.url, options.socials.twitter.screenName, options.googleAPIKey);
       });
     }
 

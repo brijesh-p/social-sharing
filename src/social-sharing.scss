@@ -6,15 +6,15 @@ $thumbBorderColour: rgb(231,231,231);
 
 @mixin animate_width {
 	-webkit-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
-    -moz-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
-    -o-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
-    transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
+     -moz-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
+       -o-transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
+          transition: width $animationDuration, border-top-left-radius $animationDuration, border-top-right-radius $animationDuration, border-bottom-left-radius $animationDuration, border-bottom-right-radius $animationDuration ease-in-out;
 }
 
 * {
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box
 }
 
 body {

@@ -1,8 +1,5 @@
 import Variables from './variables.js';
 const variables = new Variables();
-const vars = variables.variables;
-const socialButtons = vars.defaultOptions;
-console.log(socialButtons);
 
 export default class Helpers {
   constructor() {
@@ -27,12 +24,12 @@ export default class Helpers {
       return window.open('https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(window.location.href) + '&media=' + imgs[imageIndex].src, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=750');
     }
 
-    this.defineShortPageUrl = function(sourceUrl) {
+    this.defineShortPageUrl = function(sourceUrl, apiKey) {
 
      //  return promise
      return new Promise(function(resolve, reject) {
-       var googleAPIKey = socialButtons.socials.googleplus.googleAPIKey;
-       if (typeof googleAPIKey !== 'undefined') {
+       var googleAPIKey = apiKey;
+       if (typeof googleAPIKey !== 'undefined' || googleAPIKey === '') {
          var request = new XMLHttpRequest();
          request.onreadystatechange = function() {
            if (this.readyState === 4 && this.status === 200) {

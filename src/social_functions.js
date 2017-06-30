@@ -26,15 +26,15 @@ export default class CoreFunctions {
       });
     }
 
-    this.openTwitter = function(text, hashtag, link, screenName) {
+    this.openTwitter = function(text, hashtag, link, screenName, optionsKey) {
 
       //  define default values
       text = typeof text !== 'undefined' ? text : encodeURI(helpers.getContentByMetaTagName('og:title', 'property'));
       hashtag = typeof hashtag !== 'undefined' ? hashtag : encodeURI(helpers.getContentByMetaTagName('og:title', 'property'));
       link = typeof link !== 'undefined' ? link : window.location.href;
       screenName = typeof screenName !== 'undefined' ? screenName : encodeURI(helpers.getContentByMetaTagName('og:title', 'property'));
-
-      helpers.defineShortPageUrl(link, socialButtons.googleAPIKey)
+      console.log(optionsKey);
+      helpers.defineShortPageUrl(link, optionsKey)
         .then(
           function(response) {
             return window.open('https://twitter.com/intent/tweet?text=' + text + '&hashtags=' + hashtag + '&url=' + response + '&screen_name=' + screenName, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');

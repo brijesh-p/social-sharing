@@ -34,7 +34,8 @@ module.exports = {
     let buttonRoundness = typeof options.buttonRoundness === 'undefined' ? defaultConfig.buttonRoundness : options.buttonRoundness;
     let buttonGreyscale = typeof options.buttonGreyscale === 'undefined' ? defaultConfig.buttonGreyscale : options.buttonGreyscale;
     let closeBtn = typeof options.closeBtn === 'undefined' ? defaultConfig.closeBtn : options.closeBtn;
-      
+    let googleAPIKey = typeof options.googleAPIKey === 'undefined' ? defaultConfig.googleAPIKey : options.googleAPIKey;
+    
     // socials obj type
     let facebook = typeof options.socials === 'undefined' || typeof options.socials.facebook === 'undefined' ? defaultConfig.socials.facebook : options.socials.facebook;
     let twitter = typeof options.socials === 'undefined' || typeof options.socials.twitter === 'undefined' ? defaultConfig.socials.twitter : options.socials.twitter;
@@ -44,6 +45,7 @@ module.exports = {
 
     options = {
       orientation: orientation,
+      googleAPIKey: googleAPIKey,
       distanceFromTop: distanceFromTop,
       buttonMobileSize: buttonMobileSize,
       buttonDesktopSize: buttonDesktopSize,
@@ -108,7 +110,7 @@ function initConfig(config) {
 
     if (config.socials.twitter.enabled) {
       document.querySelector('#twitter_button > a').addEventListener('click',function(){
-        core_functions.openTwitter(options.socials.twitter.text,options.socials.twitter.hashtag,options.socials.twitter.url,options.socials.twitter.screenName);
+        core_functions.openTwitter(options.socials.twitter.text, options.socials.twitter.hashtag, options.socials.twitter.url, options.socials.twitter.screenName, options.googleAPIKey);
       });
     }
 

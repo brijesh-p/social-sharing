@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: './src/social-sharing.js',
   output: {
-    path: path.resolve(__dirname, 'test/js'),
+    path: path.resolve(__dirname, 'dist/js'),
     filename: 'social-sharing.js',
     libraryTarget: 'var',
     library: 'SocialSharing'

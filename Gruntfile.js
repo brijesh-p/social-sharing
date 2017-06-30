@@ -44,7 +44,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          'dist/js/social-sharing.min.js': ['src/social-sharing.js']
+          'dist/js/social-sharing.min.js': ['dist/js/social-sharing.js']
         }
       }
     },
